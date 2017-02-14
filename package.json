@@ -11,6 +11,7 @@
     "axios": "^0.15.3",
     "bootstrap": "^4.0.0-alpha.6",
     "lodash": "^4.17.4",
+    "smooth-scroll": "cferdinandi/smooth-scroll",
     "vue": "^2.1.10",
     "vue-loader": "^10.3.0",
     "vue-template-compiler": "^2.1.10",

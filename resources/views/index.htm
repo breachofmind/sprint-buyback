@@ -9,13 +9,26 @@
 	<div class="container l-main">
 
 		<div class="l-selection-panels">
-			<selection-panel :level="0" v-model="$store.state.selections.carrier" :options="unique('carrier')">
+			<selection-panel :level="0" type="selector" v-model="selections.carrier">
 				<span slot="title">Select your Carrier</span>
 			</selection-panel>
 
-			<selection-panel :level="1" v-model="$store.state.selections.brand">
+			<selection-panel :level="1" type="selector" v-model="selections.brand">
 				<span slot="title">Select your Brand</span>
 			</selection-panel>
+
+			<selection-panel :level="2" type="selector" v-model="selections.name">
+				<span slot="title">Select your Model</span>
+			</selection-panel>
+
+			<selection-panel :level="3" type="button-group" v-model="selections.capacity">
+				<span slot="title">Select your Capacity</span>
+			</selection-panel>
+
+			<inspection-panel :level="4" :device="selectedDevice"></inspection-panel>
+
+
+
 
 		</div>
 

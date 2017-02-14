@@ -3233,6 +3233,10 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
+smooth-scroll@cferdinandi/smooth-scroll:
+  version "10.2.1"
+  resolved "https://codeload.github.com/cferdinandi/smooth-scroll/tar.gz/e39e069058c9ffeea92bdef88dd2daf1ad7c4a88"
+
 sntp@1.x.x:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"

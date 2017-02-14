@@ -25,11 +25,11 @@
 
 				<a href="javascript:;"
 				   class="selector-option"
-				   @click="select(item)"
-				   v-for="(item,index) in filteredOptions"
-				   :class="{'is-selected': selectedOption.value==item.value}"
-				   :disabled="item.disabled">
-					{{item.label}}
+				   v-for="option in filteredOptions"
+				   @click="select(option,true)"
+				   :class="{'is-selected': value==option.value}"
+				   :disabled="option.disabled">
+					{{option.label}}
 				</a>
 
 			</div>
@@ -94,8 +94,6 @@
 		    return {
 		        open: false,
 			    loading:false,
-			    selected:null,
-			    selectedIndex: this.options.indexOf(this.selected),
 		        searchInput: "",
 		    }
 		},
@@ -105,7 +103,7 @@
 		 */
 		created: function()
 		{
-	        this.selected = this.getOptionForValue(this.value);
+	        //this.selected = this.getOptionForValue(this.value);
 
 	        document.addEventListener('click',(event) => {
 	            this.toggle(false);
@@ -114,6 +112,11 @@
 
 		computed: {
 
+		    selectedIndex: function()
+		    {
+		        return this.getOptionIndex(this.value);
+		    },
+
 		    /**
 		     * Get the filtered options if the filter is being used.
 		     * @returns {Array}
@@ -121,11 +124,16 @@
 		    filteredOptions: function()
 		    {
 		        if (this.searchInput.length > this.config.minChars) {
-		            return _.filter(this.options, item => {
+		            var filtered = _.filter(this.options, item => {
 		                var filter = this.searchInput.toLowerCase();
 		                var value = item.label.toLowerCase();
 		                return value.indexOf(filter) > -1;
-		            })
+		            });
+		            // If only one is returned, select it.
+		            if (filtered.length == 1) {
+		                this.select(filtered[0], true);
+		            }
+		            return filtered;
 		        }
 		        return this.options;
 		    },
@@ -136,12 +144,12 @@
 			 */
 		    selectedOption: function()
 			{
-			    return this.selected || {label:this.placeholder, value:undefined};
+			    return this.selectedIndex < 0 ? {label:this.placeholder, value:undefined} : this.options[this.selectedIndex];
 		    },
 
 			hasError: function() {
 		        return ! this.options.length || ! this.filteredOptions.length;
-			}
+			},
 		},
 
         methods: {
@@ -160,21 +168,30 @@
 		            setTimeout(() => {
                         this.$refs.searchInput.focus();
 		            },50)
+		        } else {
+                    this.searchInput = "";
 		        }
 		        this.$emit(boolean ? 'open' : 'close');
 		    },
 
             /**
              * Select an item by index.
-             * @param item {Object}
+             * @param option {Object}
+             * @param close {boolean}
              */
-	        select: function(item)
+	        select: function(option,close)
 	        {
-	            if (! item.disabled) {
-                    this.selected = item;
-                    this.toggle(false);
-                    this.$emit('input', this.selected.value);
+	            if (! option.disabled) {
+                    this.$emit('input', option.value);
+                    if (close) {
+                        this.toggle(false);
+                    }
 	            }
+	        },
+
+	        change: function(option)
+	        {
+	            this.$emit('change', option.value);
 	        },
 
             /**
@@ -185,20 +202,17 @@
 	        {
 		        var key = event.keyCode;
 		        var len = this.filteredOptions.length;
+		        var sel = this.selectedIndex;
 		        if (len > 0)
 		        {
                     if (key == DN_ARROW) {
-                        this.selectedIndex = this.selectedIndex+1 > len-1 ? 0 : this.selectedIndex+1;
+                        this.change(sel+1 > len-1 ? 0 : this.options[sel+1]);
                     } else if (key == UP_ARROW) {
-                        this.selectedIndex = this.selectedIndex-1 < 0 ? len-1 : this.selectedIndex-1;
-                    }
-                    if (this.selectedIndex > -1) {
-                        this.selected = this.filteredOptions[this.selectedIndex];
+                        this.change(sel-1 < 0 ? len-1 : this.options[sel-1]);
                     }
 		        }
 		        if (key == 13) {
-		            this.selectedIndex = -1;
-		            this.toggle(false);
+		            this.select(this.options[sel],true);
 		        }
 	        },
 
@@ -219,16 +233,17 @@
              * @param value
              * @returns {Object|undefined}
              */
-            getOptionForValue: function(value)
+            getOptionIndex: function(value)
             {
-                var selected;
+                var optionIndex = -1;
+
                 if (value == null || value == undefined) {
-                    return selected;
+                    return optionIndex;
                 }
-                this.options.forEach(item => {
-                    if (value === item.value) selected = item;
+                this.options.forEach((item,index) => {
+                    if (value === item.value) optionIndex = index;
                 });
-                return selected;
+                return optionIndex;
             },
         },
 	}
