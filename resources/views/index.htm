@@ -1,0 +1,26 @@
+@extends(layouts/master)
+
+@section(content)
+
+<main id="Application">
+
+	@include(partials/hero)
+
+	<div class="container l-main">
+
+		<div class="l-selection-panels">
+			<selection-panel :level="0" v-model="$store.state.selections.carrier" :options="unique('carrier')">
+				<span slot="title">Select your Carrier</span>
+			</selection-panel>
+
+			<selection-panel :level="1" v-model="$store.state.selections.brand">
+				<span slot="title">Select your Brand</span>
+			</selection-panel>
+
+		</div>
+
+	</div>
+</main>
+
+
+@endsection

@@ -1,0 +1,82 @@
+$selector-border: 1px solid $input-border-color;
+$selector-hover-background: #efefef;
+$selector-hover-color: black;
+$selector-selected-background: $brand-primary;
+$selector-selected-color: black;
+$selector-selected-weight: 700;
+$selector-option-color: black;
+$selector-max-height: 160px;
+
+.selector {
+	position:relative;
+}
+.selector-value-box {
+	border:$selector-border;
+	cursor:pointer;
+}
+.selector-options-box {
+	border:1px solid #efefef;
+	position:absolute;
+	background-color:white;
+	top:38px;
+	left:0;
+	right:0;
+	z-index:1000;
+	box-shadow:1px 1px 1px rgba(black,0.4);
+}
+.selector-input {
+	padding:10px;
+	margin:0;
+	.form-control {
+		border-bottom:2px solid gray;
+	}
+	.form-control:focus {
+		border:2px solid transparent;
+		border-bottom:2px solid $link-color;
+	}
+}
+.selector-input.has-icon svg {
+	top:18px;
+	left:20px;
+}
+
+.selector-options {
+	position:relative;
+	max-height:$selector-max-height;
+	border-top:$selector-border;
+	overflow-y:scroll;
+}
+
+.selector-options-loader {
+	position:absolute;
+	top:30px;
+	left:calc(50% - 15px);
+}
+
+.selector-options-empty {
+	margin:0;
+}
+
+.selector-option {
+	display:block;
+	width:100%;
+	padding:4px 8px;
+	color:$selector-option-color;
+	font-weight:300;
+	&:hover, &:focus {
+		text-decoration: none;
+		background-color:$selector-hover-background;
+		color: $selector-hover-color;
+	}
+	&[disabled] {
+		color:gray;
+		background:#efefef;
+		cursor:not-allowed;
+	}
+	&.is-selected {
+		background: $selector-selected-background;
+		color: $selector-selected-color;
+		font-weight:$selector-selected-weight;
+	}
+}
+

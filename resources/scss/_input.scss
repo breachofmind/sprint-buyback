@@ -1,0 +1,123 @@
+
+$custom-checkbox-width: 30px;
+$custom-checkbox-disabled-background: #efefef;
+$custom-checkbox-selected-background: transparent;
+$custom-checkbox-selected-color: $brand-success;
+$custom-checkbox-selected-border: 2px solid $custom-checkbox-selected-color;
+
+// Inputs that have single lines
+.form-group-linear {
+
+	position:relative;
+	margin:20px 0 15px;
+
+	label {
+		position:absolute;
+		top:5px;
+		left:12px;
+		transition:all 240ms cubic-bezier(.63,.64,.3,1) 50ms;
+	}
+
+	.form-control {
+		border:none;
+		border-radius: 0;
+		border-bottom:2px solid $input-border-color;
+	}
+	.form-control:focus + label,
+	.form-control:valid + label {
+		top:-15px;
+		font-size:12px;
+	}
+	.form-control:focus {
+		border-color: $link-color;
+	}
+	.form-control:valid {
+		border-color: $sprint-black;
+	}
+}
+
+.has-right-btn {
+	display:flex;
+	.form-control {
+		border-right:none;
+	}
+	.btn {
+		flex:0 0 150px;
+		border-left:none;
+		border-radius:0;
+	}
+}
+
+// Special custom radio buttons and checkboxes
+.form-group-custom {
+
+	input {display:none;}
+	input + .form-control {
+		position:relative;
+		display:inline-block;
+		height:$custom-checkbox-width;
+		width:$custom-checkbox-width;
+		border: 2px solid black;
+		margin:0;
+		svg {
+			transition:all 200ms;
+			position:absolute;
+			top:2px;
+			left:3px;
+			width:$custom-checkbox-width - 10px;
+			height:$custom-checkbox-width - 10px;
+			fill: transparent;
+		}
+	}
+	input[type="checkbox"] + .form-control {
+		border-radius:0px;
+	}
+	input[type="radio"] + .form-control {
+		border-radius:50%;
+	}
+	input:checked + .form-control {
+		background-color:$custom-checkbox-selected-background;
+		border: $custom-checkbox-selected-border;
+		svg {
+			fill: $custom-checkbox-selected-color;
+		}
+	}
+
+	input:disabled + .form-control {
+		background:$custom-checkbox-disabled-background;
+	}
+
+	.form-control-label {
+		margin:0 0 0 10px;
+		position:relative;
+		top:-8px;
+	}
+
+	.form-control-label,
+	.form-control {
+		cursor:pointer;
+	}
+}
+
+.form-control {
+	border:2px solid white;
+	border-radius:0;
+}
+
+.form-group.has-icon {
+	position:relative;
+	svg {
+		position:absolute;
+		width:20px;
+		height:20px;
+		top:10px;
+		left:25px;
+	}
+	input.form-control {
+		padding-left:40px;
+	}
+	input.form-control-lg + svg {
+		top: 15px;
+		left:10px;
+	}
+}

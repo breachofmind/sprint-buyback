@@ -1,0 +1,27 @@
+.selection-panel {
+	margin-bottom:50px;
+	.card-header {
+		background-color:$sprint-darkgray;
+		color: white;
+	}
+	.card-body {
+		padding:15px;
+		min-height:120px;
+	}
+}
+
+.selection-panel-title,
+.selection-panel-number {
+	font-weight:700;
+}
+
+.selection-panel-number {
+	display:inline-block;
+	width:24px;
+	height:24px;
+	background-color: $brand-primary;
+	color:black;
+	margin-right:8px;
+	text-align:center;
+	border-radius:50%;
+}

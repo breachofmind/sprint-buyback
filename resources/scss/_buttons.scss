@@ -1,0 +1,25 @@
+a {
+	font-weight:500;
+}
+
+.btn {
+	border-width:2px;
+	cursor: pointer;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+	background-color: $sprint-black;
+	border-color: $sprint-black;
+	color:white;
+}
+
+.btn-outline-primary {
+	color:$sprint-black;
+}
+
+.btn-outline-primary.btn-contrast {
+	border-color:white;
+}

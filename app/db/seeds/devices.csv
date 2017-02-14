@@ -1,0 +1,45 @@
+brand,name,capacity,model,valuation
+Brapple,ePhone 5,16,a,50
+Brapple,ePhone 5,32,a,60
+Brapple,ePhone 5s,16,b,70
+Brapple,ePhone 5s,32,b,80
+Brapple,ePhone 6,16,a,100
+Brapple,ePhone 6,32,a,120
+Brapple,ePhone 6,64,a,140
+Brapple,ePhone SE,16,b,60
+Brapple,ePhone SE,64,b,75
+Brapple,ePhone 7,32,c,150
+Brapple,ePhone 7,64,c,180
+Brapple,ePhone 7,128,c,220
+Sumsang,Universe T5,16,a,50
+Sumsang,Universe T5,32,a,60
+Sumsang,Universe T6,16,b,70
+Sumsang,Universe T6,32,b,100
+Sumsang,Universe T6,64,b,120
+Sumsang,Universe Pad,32,c,100
+Sumsang,Universe Pad,64,c,120
+Sumsang,Universe Pad,128,c,140
+Sumsang,Super,16,a,30
+Sumsang,Super,32,a,40
+Sumsang,Fab,32,b,30
+Sumsang,Fab,64,b,40
+Motorolo,Motivator,16,a,10
+Motorolo,Motivator,32,a,15
+Motorolo,Motivator,64,a,30
+Motorolo,Motivator X,64,b,30
+Motorolo,Motivator X,128,b,40
+HTD,Epicurus,32,a,10
+HTD,Orion,32,b,10
+HTD,Orion,64,b,20
+HTD,Orion,128,b,30
+HTD,Blam,32,c,50
+LB,B1,16,a,30
+LB,B1,32,a,40
+LB,B2,32,b,50
+LB,B2,64,b,75
+LB,Expensivo,64,c,120
+LB,Expensivo,128,c,150
+LB,V100,64,b,50
+Sonya,Sword,32,a,0
+Sonya,Blade,32,b,0
+Sonya,Blade,64,b,0

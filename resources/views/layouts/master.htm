@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${= data.title}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    ${= data.meta }
+    ${= data.styles }
+</head>
+<body>
+
+@yield(content)
+
+
+<footer class="l-footer">
+    <div class="container">
+        <div class="row l-footer-menu">
+            <div class="col-sm-3">
+                <ul class="link-list">
+                    <li class="link-list-header"><a href="#">About</a></li>
+                    <li><a href="#">BuyBack Program</a></li>
+                    <li><a href="#">1Million Project</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <ul class="link-list">
+                    <li class="link-list-header"><a href="#">Support</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 text-right">
+
+                <img src="/svg/brightstar-logo_full_white.svg" alt="Brightstar Logo" class="logo">
+            </div>
+        </div>
+        <div class="l-footer-submenu text-right">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+    </div>
+</footer>
+
+${= data.scripts }
+</body>
+</html>
