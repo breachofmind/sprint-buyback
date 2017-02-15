@@ -3,10 +3,8 @@
 @import "buttons";
 @import "loader";
 @import "input";
+@import "navigation";
 @import "layout";
 @import "selector";
 @import "selection-panel";
-
-.is-flex {
-	display:flex;
-}
+@import "utils";

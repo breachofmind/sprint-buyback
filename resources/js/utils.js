@@ -5,7 +5,7 @@ var scroll = require('smooth-scroll');
 var scrollOpts = {
     speed:700,
     easing: "easeInOutQuint",
-    offset: 30
+    offset: 80+30
 };
 
 /**

@@ -23,7 +23,7 @@ class IndexController extends Controller
      */
     index(request,response,next,view)
     {
-        return view.template('index').title('Expressway');
+        return view.template('index').title('Sprint Buyback Prototype');
     }
 }
 

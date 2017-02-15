@@ -2,10 +2,10 @@
 $hero-title-max-width: 840px;
 $hero-body-max-width: 500px;
 
-.svg-icon {
-	height:24px;
-	width:24px;
+body {
+	margin-top:90px;
 }
+
 
 .l-hero-row {
 	background:$sprint-yellow;
@@ -49,12 +49,25 @@ $hero-body-max-width: 500px;
 	margin:0 auto;
 	h2 {
 		font-size:26px;
+		margin-bottom:15px;
 	}
 }
 
 .l-donate-row {
 	background: $sprint-lightgray;
 	padding:50px 0;
+}
+
+.donate-image {
+	width:100%;
+	max-width:200px;
+	border:5px solid black;
+	@media screen and (max-width:768px) {
+		margin-bottom:15px;
+	}
+}
+.l-donate-content {
+	padding-top:15px;
 }
 
 .l-donate-buttons {
