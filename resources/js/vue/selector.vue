@@ -1,7 +1,8 @@
 <template>
-	<div class="selector" @click.stop>
-		<div class="form-group">
-			<input type="text" readonly class="selector-display-value form-control" :value="selectedOption.label" @focus="toggle"/>
+	<div class="selector" @click.stop :class="{'is-open':open}">
+		<div class="form-group selector-display">
+			<input type="text" :id="id" readonly :disabled="disabled" class="selector-display-value form-control" :value="selectedOption.label" @focus="toggle"/>
+			<label :for="id" class="selector-display-icon"><icon name="chevron-up"></icon></label>
 		</div>
 		<div class="selector-options-box" v-show="open">
 			<div class="selector-input form-group has-icon">
@@ -76,6 +77,10 @@
                 }
             }
 		},
+        "disabled" : {
+            type: Boolean,
+	        default: false
+        },
         "name" : {
             type: String,
 	        required: true
@@ -160,6 +165,9 @@
              */
 		    toggle: function(boolean)
 		    {
+		        if (this.disabled) {
+		            return;
+		        }
 		        if (typeof boolean !== 'boolean') {
 		            boolean = ! this.open;
 		        }

@@ -2,11 +2,15 @@
 $hero-title-max-width: 840px;
 $hero-body-max-width: 500px;
 
+.svg-icon {
+	height:24px;
+	width:24px;
+}
 
 .l-hero-row {
 	background:$sprint-yellow;
 	position:relative;
-	padding:50px 0;
+	padding:50px 15px;
 	border-bottom:3px solid #efefef;
 	&:after {
 		content:"";
@@ -72,7 +76,7 @@ $hero-body-max-width: 500px;
 }
 
 .l-main {
-	padding:50px 0;
+	padding:50px 10px;
 }
 
 .l-footer {

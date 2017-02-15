@@ -1,5 +1,5 @@
 <template>
-	<div class="inspect-question">
+	<div :id="id" class="inspect-question">
 		<h4 class="inspect-question-header">
 			<span class="inspect-question-number">{{index+1}}</span>
 			<span class="inspect-question-title">{{question.title}}</span>
@@ -41,6 +41,11 @@
 		props: ['question','index'],
 
 		computed: {
+		    id: function()
+		    {
+		        return "InspectionQuestion"+this.index;
+		    },
+
 			inputName: function()
 			{
 			    return "question_" + this.index;
@@ -55,7 +60,7 @@
 
 			onChange: function(event)
 			{
-			    this.$emit('input', this.question);
+			    this.$emit('input', this.question, this.index);
 			}
 		}
 	}

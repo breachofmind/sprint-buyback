@@ -83,17 +83,26 @@ $selection-button-hover-color:#979797;
 .device-capacity:after {
 	content:"GB";
 }
+.l-inspect {
+	flex-wrap: wrap;
+}
 .l-inspect-device {
 	flex-direction: column;
 	align-items:center;
 	justify-content: center;
-	width:33.33%;
+	//width:600px;
+	flex-grow:1;
 	text-align:center;
 	padding:50px 0;
+	flex-wrap:wrap;
 }
 .l-inspect-questions {
-	width:66.66%;
-	flex-wrap:wrap;
+	width:33.33%;
+	flex-grow:2;
+	flex-wrap: wrap;
+	@media screen and(max-width:992px) {
+		width:100%;
+	}
 }
 
 .device-image {
@@ -110,7 +119,7 @@ $selection-button-hover-color:#979797;
 
 .inspect-question {
 	position:relative;
-	width:45%;
+	width:300px;
 	margin:8px;
 	flex-grow:1;
 	border:$selection-button-border;

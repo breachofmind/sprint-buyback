@@ -6,11 +6,15 @@
 		</header>
 		<div class="card-body">
 			<div class="selection-panel-input" v-if="! loading">
-				<component :is="type" :id="id+'Selector'" :value="value" :options="options" :name="property" @input="onInput" @change="onChange">
+				<component :is="type" :id="id+'Selector'" :value="value" :options="options" :name="property" :disabled="! selectable" @input="onInput" @change="onChange">
 					Please choose an option above.
 				</component>
 			</div>
 			<loader v-else></loader>
+			<div class="selection-panel-help text-right" v-show="selectable">
+				<a href="javascript:;">Where do I find this?</a>
+			</div>
+
 		</div>
 	</div>
 </template>

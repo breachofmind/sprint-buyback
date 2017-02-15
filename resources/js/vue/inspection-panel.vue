@@ -49,6 +49,7 @@
 <script>
 	var $http = require('axios');
 	var utils = require('../utils');
+	var SCREEN_MD = 768;
 
 	module.exports = {
 
@@ -92,7 +93,7 @@
 
 		methods: {
 
-		    onInput: function(question)
+		    onInput: function(question,index)
 		    {
 		        // When a question is answered, check if all of them have been answered.
 			    var complete = true;
@@ -103,6 +104,9 @@
 			    if (complete) {
 			        this.$emit('complete', this.questions);
 			    }
+
+			    // Move to the next question if mobile.
+			    utils.scrollTo('InspectionQuestion'+(index+1), SCREEN_MD);
 		    },
 
 		    getQuote: function()

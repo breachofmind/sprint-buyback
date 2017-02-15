@@ -7,6 +7,14 @@
   "scripts": {
     "start": "node index.js start"
   },
+  "babel": {
+    "presets" : [
+      "babel-preset-es2015"
+    ],
+    "ignore" : [
+      "node_modules/*"
+    ]
+  },
   "dependencies": {
     "axios": "^0.15.3",
     "bootstrap": "^4.0.0-alpha.6",
