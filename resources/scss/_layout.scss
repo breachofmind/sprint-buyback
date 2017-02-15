@@ -60,10 +60,11 @@ $hero-body-max-width: 500px;
 }
 
 .l-status-row {
-	background:$sprint-yellow;
+	background:$sprint-darkgray;
 	padding: 30px 0;
 	border-bottom:8px solid $sprint-black;
-
+	h3 {color:white;}
+	a {color:$brand-primary;}
 	.form-control,
 	.form-group {
 		margin:0;

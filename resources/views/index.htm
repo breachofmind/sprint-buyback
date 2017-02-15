@@ -8,7 +8,7 @@
 
 	<div class="container l-main">
 
-		<div class="l-selection-panels">
+		<div class="l-main-workflow" v-if="$store.state.useWorkflow">
 			<selection-panel :level="0" type="selector" v-model="selections.carrier">
 				<span slot="title">Select your Carrier</span>
 			</selection-panel>
@@ -24,14 +24,11 @@
 			<selection-panel :level="3" type="button-group" v-model="selections.capacity">
 				<span slot="title">Select your Capacity</span>
 			</selection-panel>
-
-			<inspection-panel :level="4" :device="selectedDevice"></inspection-panel>
-
-
-
-
 		</div>
 
+		<inspection-panel :level="4" :device="$store.state.selectedDevice"></inspection-panel>
+
+		<quote-panel :level="5" :quote="$store.state.quote"></quote-panel>
 	</div>
 </main>
 

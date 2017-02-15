@@ -123,20 +123,22 @@
 
 		    onInput: function(item)
 		    {
-		        this.$store.commit('select', {level:this.level, property:this.property, value:item[this.property]});
-		        this.$emit('input', item);
+		        this.onChange(item);
 		        this.goToNext();
 		    },
 
 			onChange: function(item)
 			{
-                this.$store.commit('select', {level:this.level, property:this.property, value:item[this.property]});
                 this.$emit('input', item);
+                this.$store.commit('select', {level:this.level, property:this.property, value:item[this.property]});
+
 			},
 
             goToNext: function()
             {
-                utils.scrollTo("SelectionPanel"+(this.level+1));
+                var totalLevels = this.$store.getters.levels.length;
+                var nextId = this.level + 1 >= totalLevels ? "InspectionPanel" : "SelectionPanel"+(this.level+1);
+                utils.scrollTo(nextId);
             }
 		}
 	}

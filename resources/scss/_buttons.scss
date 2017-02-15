@@ -23,3 +23,49 @@ a {
 .btn-outline-primary.btn-contrast {
 	border-color:white;
 }
+
+.btn.has-arrow svg {
+	height:16px;
+	width:16px;
+	position:relative;
+	top:2px;
+	transition:all 100ms;
+}
+.btn.has-arrow:hover svg {
+	fill: white;
+}
+
+.btn.has-loader {
+	min-width:150px;
+	position:relative;
+	> span, > svg {
+		opacity:1;
+		transition:all 150ms;
+	}
+	.loader {
+		position:absolute;
+		left:calc(50% - 20px);
+		top:-6px;
+		opacity:0;
+	}
+	.loader-inner {
+		height:50px;
+	}
+}
+.btn-lg.has-loader {
+	.loader {
+		top:-2px;
+	}
+}
+.btn.is-loading {
+	background: transparent;
+	&:hover, &:focus {
+		border-color: inherit;
+	}
+	> span, > svg {
+		opacity:0;
+	}
+	.loader {
+		opacity:1;
+	}
+}

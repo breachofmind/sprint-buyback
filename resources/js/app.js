@@ -2,10 +2,10 @@
 require('../scss/app.scss');
 
 var Vue = require('vue');
-var $http = require('./api');
 var store = require('./store');
 var utils = require('./utils');
-var _ = require('lodash');
+var $http = require('axios');
+var SERIAL_NUMBER_MINLENGTH = 5;
 
 [   'loader',
     'icon',
@@ -15,6 +15,7 @@ var _ = require('lodash');
     'button-group',
     'selection-panel',
     'inspection-panel',
+    'quote-panel',
 ].forEach(component => {
     Vue.component(component, require('./vue/'+component+".vue"));
 });
@@ -28,14 +29,20 @@ Vue.directive('scroll', {
             utils.scrollTo(id.replace("#",""));
         });
     }
-})
-
+});
+Vue.filter('currency', function(value) {
+    return "$"+value;
+});
 
 var app = new Vue({
     store,
     el: "#Application",
     created: function() {
         this.$store.commit('fetch');
+    },
+    data: {
+        serialNumber: "",
+        submitting: false,
     },
     computed: {
         selections: function()
@@ -45,7 +52,30 @@ var app = new Vue({
 
         selectedDevice: function()
         {
-            return this.$store.getters.selectedDevice;
+            return this.$store.state.selectedDevice;
+        }
+    },
+
+    methods: {
+        lookupSerial: function(event)
+        {
+            if (this.serialNumber.length < SERIAL_NUMBER_MINLENGTH || this.submitting) {
+                return;
+            }
+
+            this.submitting = true;
+            $http.post('/device/serial', this.serialNumber).then(response => {
+                window.setTimeout(timer => {
+                    this.$store.commit('device', {
+                        device: response.data,
+                        serialNumber: this.serialNumber
+                    });
+                    this.submitting = false;
+                    // Scroll to the inspection area.
+                    utils.scrollTo('InspectionPanel');
+                }, 2000);
+            });
+
         }
     }
 });

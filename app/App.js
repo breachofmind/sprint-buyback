@@ -33,15 +33,18 @@ class App extends Extension
      * @param controller Function
      * @param app {Application}
      */
-    boot(next,controller,app)
+    boot(next,controller,app,Device)
     {
         this.webpack.entry('main.js');
         this.webpack.attach(controller('IndexController'));
 
         app.call(installer);
 
-        this.webpack.server().then(done => {
-            super.boot(next);
+        Device.all().then(devices => {
+            app.service('deviceCollection', devices);
+            this.webpack.server().then(done => {
+                super.boot(next);
+            });
         });
     }
 }

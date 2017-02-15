@@ -10,7 +10,11 @@ module.exports.routes = {
         'Session',
     ],
     paths: [
-        {"GET /": "IndexController.index"}
+        {
+            "GET /": "IndexController.index",
+            "POST /device/serial" : "StateController.serial",
+            "POST /device/quote" : "StateController.quote",
+        }
     ],
     error: "NotFound",
     static: {

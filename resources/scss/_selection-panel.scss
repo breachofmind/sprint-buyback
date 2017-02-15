@@ -1,6 +1,7 @@
 $selection-button-color:black;
 $selection-button-selected-color: $brand-primary;
 $selection-button-border:5px solid #efefef;
+$selection-button-hover-color:#979797;
 
 .selection-panel {
 	margin-bottom:50px;
@@ -35,6 +36,15 @@ $selection-button-border:5px solid #efefef;
 	border-radius:50%;
 }
 
+.selection-panel-icon {
+	margin-right:8px;
+	svg {
+		fill: $brand-primary;
+		height:20px;
+		width:20px;
+	}
+}
+
 .selection-button-group {
 	padding:0 15px;
 }
@@ -45,7 +55,7 @@ $selection-button-border:5px solid #efefef;
 }
 .selection-button-wrapper.is-selected {
 	.selection-button {
-		border-color: $selection-button-selected-color;
+		border-color: $sprint-black;
 		background-color:$selection-button-selected-color;
 		color: black;
 	}
@@ -61,7 +71,7 @@ $selection-button-border:5px solid #efefef;
 		text-decoration:none;
 	}
 	&:hover {
-		border-color: #979797;
+		border-color: $selection-button-hover-color;
 	}
 }
 .selection-button-group[data-name="capacity"] {
@@ -71,7 +81,7 @@ $selection-button-border:5px solid #efefef;
 
 // Inspection panel
 .device-capacity:after {
-	content:" GB";
+	content:"GB";
 }
 .l-inspect-device {
 	flex-direction: column;
@@ -104,13 +114,70 @@ $selection-button-border:5px solid #efefef;
 	margin:8px;
 	flex-grow:1;
 	border:$selection-button-border;
-	padding:10px 10px 40px;
+	padding:10px 10px 60px;
 }
-.inspect-question-title {
+.inspect-question-header {
 	font-size:18px;
+}
+.inspect-question-number {
+	display:inline-block;
+	background: $brand-primary;
+	width:18px;
+	height:18px;
+	font-size:14px;
+	padding-top:3px;
+	border-radius:50%;
+	text-align:center;
+	margin-right:5px;
 }
 .inspect-question-actions {
 	position:absolute;
 	bottom:10px;
 	left:10px;
+}
+
+.inspection-panel .card-footer {
+	padding:20px;
+}
+
+.custom-boolean {
+	display:inline-block;
+	input {display:none;}
+	label {
+		margin:0;
+		display:block;
+		padding:5px 10px;
+		border:3px solid #efefef;
+		min-width:80px;
+		text-align:center;
+		transition:all 200ms;
+		cursor:pointer;
+		border-radius: 40px;
+	}
+	label:hover {
+		border-color: $selection-button-hover-color;
+	}
+	input:checked + label {
+		border-color: $sprint-black;
+		background: $brand-primary;
+	}
+}
+
+.custom-boolean.is-no {
+	input:checked + label {
+		background: $sprint-lightgray;
+	}
+}
+
+.quote-valuation {
+	text-align:center;
+	width:100%;
+	max-width:500px;
+	margin:0 auto 15px;
+	p {margin:0;}
+}
+
+.quote-disclaimer {
+	text-align:center;
+	&:before {content:"*"; color:red;}
 }

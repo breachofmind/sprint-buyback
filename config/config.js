@@ -20,6 +20,7 @@ module.exports = {
         require('expressway-auth/src/models/User'),
         require('../app/models/Device'),
         require('../app/controllers/IndexController'),
+        require('../app/controllers/StateController'),
     ],
 
     /**
