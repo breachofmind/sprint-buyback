@@ -24,14 +24,13 @@
 					<span v-if="! filteredOptions.length && searchInput.length">No results found.</span>
 				</div>
 
-				<a href="javascript:;"
-				   class="selector-option"
+				<component :is="templateStyle"
 				   v-for="option in filteredOptions"
-				   @click="select(option,true)"
+		           :option="option"
 				   :class="{'is-selected': value==option.value}"
-				   :disabled="option.disabled">
-					{{option.label}}
-				</a>
+				   :disabled="option.disabled"
+		           @select="select(option,true)">
+				</component>
 
 			</div>
 			<input type="hidden" :name="name" :value="selectedOption.value">
@@ -117,6 +116,11 @@
 
 		computed: {
 
+		    templateStyle: function()
+		    {
+		        return this.name == "name" ? "selector-option-image" : "selector-option-link";
+		    },
+
 		    selectedIndex: function()
 		    {
 		        return this.getOptionIndex(this.value);
@@ -155,6 +159,11 @@
 			hasError: function() {
 		        return ! this.options.length || ! this.filteredOptions.length;
 			},
+		},
+
+		components: {
+		    "selector-option-link" : require('./selector-option-link.vue'),
+		    "selector-option-image" : require('./selector-option-image.vue'),
 		},
 
         methods: {
