@@ -4,43 +4,55 @@
 			<input type="text" :id="id" readonly :disabled="disabled" class="selector-display-value form-control" :value="selectedOption.label" @focus="toggle"/>
 			<label :for="id" class="selector-display-icon"><icon name="chevron-up"></icon></label>
 		</div>
-		<div class="selector-options-box" v-show="open">
-			<div class="selector-input form-group has-icon">
-				<input type="search"
-				       class="form-control"
-				       v-model="searchInput"
-				       ref="searchInput"
-				       :disabled="loading"
-				       @keyup="onKeyup">
 
-				<icon name="magnifier"></icon>
-			</div>
+		<transition name="fade">
+			<div class="selector-options-box" v-show="open">
+				<div class="selector-input form-group has-icon">
+					<input type="search"
+					       class="form-control"
+					       v-model="searchInput"
+					       ref="searchInput"
+					       :disabled="loading"
+					       @keyup="onKeyup">
 
-			<div class="selector-options" @mousewheel="onScroll">
-				<loader class="selector-options-loader" v-show="loading"></loader>
-
-				<div class="selector-options-empty alert alert-info" v-if="hasError">
-					<slot v-if="! options.length"></slot>
-					<span v-if="! filteredOptions.length && searchInput.length">No results found.</span>
+					<icon name="magnifier"></icon>
 				</div>
 
-				<component :is="templateStyle"
-				   v-for="option in filteredOptions"
-		           :option="option"
-				   :class="{'is-selected': value==option.value}"
-				   :disabled="option.disabled"
-		           @select="select(option,true)">
-				</component>
+				<div class="selector-options" @mousewheel="onScroll">
+					<loader class="selector-options-loader" v-show="loading"></loader>
 
+					<div class="selector-options-empty alert alert-info" v-if="hasError">
+						<slot v-if="! options.length"></slot>
+						<span v-if="! filteredOptions.length && searchInput.length">No results found.</span>
+					</div>
+
+					<component :is="templateStyle"
+					   v-for="option in filteredOptions"
+			           :option="option"
+					   :class="{'is-selected': value==option.value}"
+					   :disabled="option.disabled"
+			           @select="select(option,true)">
+					</component>
+
+				</div>
+				<input type="hidden" :name="name" :value="selectedOption.value">
 			</div>
-			<input type="hidden" :name="name" :value="selectedOption.value">
-		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
 	var _ = require('lodash');
 	var $http = require('../api');
+
+	function wait(time)
+	{
+	    return {
+	        then: function(cb) {
+	            window.setTimeout(cb,time);
+	        }
+	    }
+	}
 
     var SCROLL_SENSITIVITY = 25; // pixels
     var UP_ARROW = 38;
@@ -140,7 +152,7 @@
 		            });
 		            // If only one is returned, select it.
 		            if (filtered.length == 1) {
-		                this.select(filtered[0], true);
+		                this.change(filtered[0]);
 		            }
 		            return filtered;
 		        }
@@ -170,25 +182,29 @@
 
             /**
              * Toggle the selector window open.
-             * @param boolean
+             * @param isOpen {Boolean}
              */
-		    toggle: function(boolean)
+		    toggle: function(isOpen)
 		    {
 		        if (this.disabled) {
 		            return;
 		        }
-		        if (typeof boolean !== 'boolean') {
-		            boolean = ! this.open;
+		        if (typeof isOpen !== 'boolean') {
+                    isOpen = ! this.open;
 		        }
-		        this.open = boolean;
-		        if (this.open) {
-		            setTimeout(() => {
-                        this.$refs.searchInput.focus();
-		            },50)
-		        } else {
-                    this.searchInput = "";
+		        if (! isOpen) {
+		            return wait(200).then(() => {
+		                this.open = isOpen;
+                        this.searchInput = "";
+                        this.$emit('close');
+		            });
 		        }
-		        this.$emit(boolean ? 'open' : 'close');
+
+	            this.open = isOpen;
+	            wait(50).then(() => {
+                    this.$refs.searchInput.focus();
+                    this.$emit('open');
+	            })
 		    },
 
             /**

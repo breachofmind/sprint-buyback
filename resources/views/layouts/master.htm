@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<main id="Application">
+<main id="Application" :class="{'nav-open': $store.state.nav}">
 
     <nav id="Navigation" class="l-navigation">
         <div class="container">
@@ -19,6 +19,9 @@
                 <li><a href="#DonationSection" v-scroll>1Million Project</a></li>
                 <li><a href="#">Support</a></li>
             </ul>
+            <div class="mobile-nav-menu hidden-md-up">
+                <a href="javascript:;" @click="toggleNav" ><icon name="menu"></icon></a>
+            </div>
         </div>
     </nav>
 

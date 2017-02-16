@@ -84,6 +84,11 @@ $ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 		color: $selector-selected-color;
 		font-weight:$selector-selected-weight;
 	}
+
+	// Make the tap targets bigger
+	@include media-breakpoint-down(sm) {
+		padding:10px;
+	}
 }
 
 .selector-option-image {
@@ -131,8 +136,29 @@ $ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .selector.is-open {
+	.selector-display-value {
+		border-color:$brand-primary;
+	}
 	.selector-display-icon svg {
 		transform:rotate(540deg);
 		top:4px;
 	}
+}
+
+// Transitions
+.selector-options-box {
+	transition:all 300ms;
+	&.fade-enter-active {
+		opacity:0;
+		transform:scale(0.8);
+	}
+	&.fade-enter-to {
+		opacity:1;
+		transform:scale(1);
+	}
+	&.fade-leave-active {
+		opacity:0;
+		transform:scale(0.95);
+	}
+
 }

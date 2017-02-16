@@ -2,11 +2,6 @@
 $hero-title-max-width: 840px;
 $hero-body-max-width: 500px;
 
-body {
-	margin-top:90px;
-}
-
-
 .l-hero-row {
 	background:$sprint-yellow;
 	position:relative;
@@ -85,6 +80,11 @@ body {
 	.form-control,
 	.form-group {
 		margin:0;
+	}
+	@include media-breakpoint-down(sm) {
+		.form-group {
+			margin-top:15px;
+		}
 	}
 }
 

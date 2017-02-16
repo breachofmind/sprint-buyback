@@ -57,6 +57,14 @@ var app = new Vue({
     },
 
     methods: {
+        toggleNav: function(open)
+        {
+            if (typeof open != 'boolean') {
+                open = !this.$store.state.nav;
+            }
+            this.$store.state.nav = open;
+        },
+
         lookupSerial: function(event)
         {
             if (this.serialNumber.length < SERIAL_NUMBER_MINLENGTH || this.submitting) {

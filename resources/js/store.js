@@ -17,6 +17,7 @@ var store = new Vuex.Store({
         selectedDevice: null,
         serialNumber: null,
         quote: null,
+        nav: false,
         useWorkflow: false,
         selections: {
             carrier: null,
