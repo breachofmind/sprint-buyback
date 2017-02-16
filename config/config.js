@@ -99,5 +99,5 @@ module.exports = {
      * @injectable
      * @type Function
      */
-    debugger: require('expressway/src/support/debugger')
+    debugger: require('expressway/src/support/debugger'),
 }

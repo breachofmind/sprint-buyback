@@ -27,4 +27,11 @@ module.exports = {
     debug: true,
 
     nodemailer_transport: null,
+
+    deploy: {
+        host: "dev.brightstarus.com",
+        username: "madamczyk-adm",
+        privateKey: "/Users/ma18250/.ssh/id_rsa",
+        path: "/var/www/html/sprint-buyback"
+    }
 };
