@@ -39,7 +39,6 @@ class App extends Extension
         this.webpack.attach(controller('IndexController'));
 
         app.call(installer);
-
         Device.all().then(devices => {
             app.service('deviceCollection', devices);
             this.webpack.server().then(done => {
